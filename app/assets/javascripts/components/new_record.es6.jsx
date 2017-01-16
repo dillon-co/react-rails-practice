@@ -5,7 +5,7 @@ class NewRecord extends React.Component {
 
   }
 
-  addRecord(e){
+  addRecord(){
     var title = $("#record-title").val(), date = $("#record-date").val(), amount=parseFloat($("#record-amount").val())
     var dataHash = {title: title, date: date, amount: amount}
     console.log(dataHash);
