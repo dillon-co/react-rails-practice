@@ -16,4 +16,11 @@ class RecordsController < ApplicationController
       format.js { render nothing: true }
     end
   end
+
+  def load_records
+    records = Record.all
+    respond_to do |format|
+      format.json { render json: records}
+    end
+  end
 end

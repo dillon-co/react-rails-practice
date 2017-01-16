@@ -1,7 +1,17 @@
 class Records extends React.Component {
-  constructor(props){
-    super(props);
+  constructor(props, content){
+    super(props, content);
     this.state = {allRecords: (this.props.allRecords || "")}
+  }
+
+  getNewRecords(){
+    $.get({
+      url: window.location.origin+'/load_records',
+      success: function(data){
+        console.log(data);
+        this.setState( {allRecords: data})
+      }.bind(this)
+    })
   }
 
   render () {
@@ -15,8 +25,12 @@ class Records extends React.Component {
       <div>
         <h1>Records</h1>
         <hr/>
+        <button onClick={this.getNewRecords.bind(this)} className='btn btn-success'>
+          Reload Records
+        </button>
+        <br/><br/>
         <div className='row'>
-          {records}
+          {records.reverse()}
         </div>
       </div>
     );
